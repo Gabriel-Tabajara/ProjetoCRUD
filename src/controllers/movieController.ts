@@ -33,8 +33,30 @@ const delete_movies_by_body = async(req:any, res:any) => {
     }
 };
 
+const put_movies_by_body = async(req:any, res:any) => {
+    try{
+        const id = req.body._id;
+        const movie = await Movie.findById(id);
+        if(movie === null){
+            //res.status(200).send(JSON.stringify({ message: `The movie ${id} doesn´t exists` }));
+        } else {
+            await Movie.replaceOne({ _id: id }, { 
+                title: req.body.title || movie.title,
+                rating: req.body.rating || movie.rating,
+                genre: req.body.genre || movie.genre,
+                duration: req.body.duration || movie.duration
+            });
+           const uptdMovie = await Movie.findById(id);
+            res.status(200).send(uptdMovie);
+        }
+    } catch(err) {
+        console.log(err);
+    }
+};
+
 export {
     get_movies, 
     post_movies, 
-    delete_movies_by_body
+    delete_movies_by_body,
+    put_movies_by_body
 };
