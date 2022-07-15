@@ -10,15 +10,15 @@ const dbURI = 'mongodb+srv://morcego:1234@cluster0.b5g905x.mongodb.net/CRUDMovie
 async function connectDb() {
     try{
         await mongoose.connect(dbURI);
-        app.listen(5000, () => console.log('conectou na porta 5000'));
+        app.listen(5000, () => console.log('Connected in port 5000'));
     } catch(err) {
-        console.log('Erro no connectDB!');
+        console.log('Error in connect with database');
     }
 }
 
 connectDb();
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.json());  
 
 app.use('/movies', movieRouter);

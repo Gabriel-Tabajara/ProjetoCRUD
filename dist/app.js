@@ -17,10 +17,10 @@ function connectDb() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             yield mongoose.connect(dbURI);
-            app.listen(5000, () => console.log('conectou na porta 5000'));
+            app.listen(5000, () => console.log('Connected in port 5000'));
         }
         catch (err) {
-            console.log('Erro no connectDB!');
+            console.log('Error in connect with database');
         }
     });
 }

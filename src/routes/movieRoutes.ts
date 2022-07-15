@@ -5,7 +5,7 @@ const movieRouter = express.Router();
 
 movieRouter.get('/', movieController.get_movies);
 
-//fazer um get por id
+movieRouter.get('/:id', movieController.get_movie);
 
 movieRouter.post('/', movieController.post_movies);
 

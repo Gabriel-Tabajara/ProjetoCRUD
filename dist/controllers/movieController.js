@@ -14,7 +14,22 @@ const get_movies = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.status(200).send(result);
     }
     catch (err) {
-        console.log('Erro no get_movies');
+        res.status(404);
+    }
+});
+const get_movie = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const find = yield Movie.findById(id);
+        if (find === null) {
+            res.status(404).send(JSON.stringify({ message: `The movie ${id} doesn´t exists` }));
+        }
+        else {
+            res.status(200).send(find);
+        }
+    }
+    catch (err) {
+        res.status(404);
     }
 });
 const post_movies = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -24,7 +39,7 @@ const post_movies = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         res.status(201).send(movie);
     }
     catch (err) {
-        console.log(err);
+        res.status(404);
     }
 });
 const delete_movies_by_body = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -32,14 +47,14 @@ const delete_movies_by_body = (req, res) => __awaiter(void 0, void 0, void 0, fu
         const id = req.body._id;
         const find = yield Movie.findByIdAndDelete(id);
         if (find === null) {
-            res.status(200).send(JSON.stringify({ message: `The movie ${id} doesn´t exists` }));
+            res.status(404).send(JSON.stringify({ message: `The movie ${id} doesn´t exists` }));
         }
         else {
             res.status(200).send(JSON.stringify({ message: `The movie ${id} has been deleted` }));
         }
     }
     catch (err) {
-        console.log(err);
+        res.status(404);
     }
 });
 const put_movies_by_body = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -47,7 +62,7 @@ const put_movies_by_body = (req, res) => __awaiter(void 0, void 0, void 0, funct
         const id = req.body._id;
         const movie = yield Movie.findById(id);
         if (movie === null) {
-            //res.status(200).send(JSON.stringify({ message: `The movie ${id} doesn´t exists` }));
+            res.status(404).send(JSON.stringify({ message: `The movie ${id} doesn´t exists` }));
         }
         else {
             yield Movie.replaceOne({ _id: id }, {
@@ -61,7 +76,7 @@ const put_movies_by_body = (req, res) => __awaiter(void 0, void 0, void 0, funct
         }
     }
     catch (err) {
-        console.log(err);
+        res.status(404);
     }
 });
-export { get_movies, post_movies, delete_movies_by_body, put_movies_by_body };
+export { get_movies, post_movies, delete_movies_by_body, put_movies_by_body, get_movie };
