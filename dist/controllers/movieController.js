@@ -57,6 +57,21 @@ const delete_movies_by_body = (req, res) => __awaiter(void 0, void 0, void 0, fu
         res.status(404);
     }
 });
+const delete_movies_by_param = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const find = yield Movie.findByIdAndDelete(id);
+        if (find === null) {
+            res.status(404).send(JSON.stringify({ message: `The movie ${id} doesn´t exists` }));
+        }
+        else {
+            res.status(200).send(JSON.stringify({ message: `The movie ${id} has been deleted` }));
+        }
+    }
+    catch (err) {
+        res.status(404);
+    }
+});
 const put_movies_by_body = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.body._id;
@@ -79,4 +94,4 @@ const put_movies_by_body = (req, res) => __awaiter(void 0, void 0, void 0, funct
         res.status(404);
     }
 });
-export { get_movies, post_movies, delete_movies_by_body, put_movies_by_body, get_movie };
+export { get_movies, post_movies, delete_movies_by_body, put_movies_by_body, get_movie, delete_movies_by_param };

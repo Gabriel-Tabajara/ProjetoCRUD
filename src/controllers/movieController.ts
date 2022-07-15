@@ -47,6 +47,20 @@ const delete_movies_by_body = async(req:any, res:any) => {
     }
 };
 
+const delete_movies_by_param = async(req:any, res:any) => {
+    try{
+        const id = req.params.id;
+        const find = await Movie.findByIdAndDelete(id);
+        if(find === null){
+            res.status(404).send(JSON.stringify({ message: `The movie ${id} doesn´t exists` }));
+        }else{
+            res.status(200).send(JSON.stringify({ message: `The movie ${id} has been deleted` }));
+        }
+    } catch(err) {
+        res.status(404);
+    }
+};
+
 const put_movies_by_body = async(req:any, res:any) => {
     try{
         const id = req.body._id;
@@ -73,5 +87,6 @@ export {
     post_movies, 
     delete_movies_by_body,
     put_movies_by_body,
-    get_movie
+    get_movie,
+    delete_movies_by_param
 };
