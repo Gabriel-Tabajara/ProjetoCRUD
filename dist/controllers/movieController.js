@@ -32,7 +32,7 @@ const get_movie = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(404);
     }
 });
-const post_movies = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const post_movie = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const movie = new Movie(req.body);
         yield movie.save();
@@ -94,4 +94,4 @@ const put_movies_by_body = (req, res) => __awaiter(void 0, void 0, void 0, funct
         res.status(404);
     }
 });
-export { get_movies, post_movies, delete_movies_by_body, put_movies_by_body, get_movie, delete_movies_by_param };
+export { get_movies, post_movie, delete_movies_by_body, put_movies_by_body, get_movie, delete_movies_by_param };

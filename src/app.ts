@@ -22,3 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());  
 
 app.use('/movies', movieRouter);
+
+app.use((req: any , res: any) => {
+    res.status(404).send(JSON.stringify({ message: 'Route doesn´t exists'}));
+});

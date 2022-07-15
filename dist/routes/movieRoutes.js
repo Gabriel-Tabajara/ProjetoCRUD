@@ -3,10 +3,8 @@ import * as movieController from '../controllers/movieController.js';
 const movieRouter = express.Router();
 movieRouter.get('/', movieController.get_movies);
 movieRouter.get('/:id', movieController.get_movie);
-movieRouter.post('/', movieController.post_movies);
-//Fazer um post de array
+movieRouter.post('/', movieController.post_movie);
 movieRouter.delete('/', movieController.delete_movies_by_body);
 movieRouter.delete('/:id', movieController.delete_movies_by_param);
 movieRouter.put('/', movieController.put_movies_by_body);
-//Fazer um put de movies/:id
 export { movieRouter };

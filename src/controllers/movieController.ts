@@ -23,7 +23,7 @@ const get_movie = async(req:any, res:any) => {
     }
 };
 
-const post_movies = async(req:any, res:any) => {
+const post_movie = async(req:any, res:any) => {
     try{
         const movie = new Movie(req.body);
         await movie.save();
@@ -84,7 +84,7 @@ const put_movies_by_body = async(req:any, res:any) => {
 
 export {
     get_movies, 
-    post_movies, 
+    post_movie, 
     delete_movies_by_body,
     put_movies_by_body,
     get_movie,
