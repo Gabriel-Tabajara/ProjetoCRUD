@@ -9,4 +9,14 @@ const get_movies = async(req:any, res:any) => {
     }
 };
 
-export {get_movies};
+const post_movies = async(req:any, res:any) => {
+    try{
+        const movie = new Movie(req.body);
+        await movie.save();
+        res.status(201).send(movie);
+    } catch(err) {
+        console.log(err);
+    }
+};
+
+export {get_movies, post_movies};

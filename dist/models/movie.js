@@ -18,6 +18,6 @@ const movieSchema = new Schema({
         min: 0,
         required: true
     }
-}, { timestamps: true });
+}, { versionKey: false });
 const Movie = mongoose.model('Movie', movieSchema);
 export { Movie };

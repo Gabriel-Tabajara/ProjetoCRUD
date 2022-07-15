@@ -1,5 +1,6 @@
 import express  from "express";
 import mongoose from "mongoose";
+import bodyParser from 'body-parser'
 import { movieRouter } from './routes/movieRoutes.js';
 
 const app = express();
@@ -17,8 +18,9 @@ async function connectDb() {
 
 connectDb();
 
-app.set( "view engine", "ejs" );
-
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+//app.use(express.urlencoded({ extended: true }));
+//app.set( "view engine", "ejs" );
 
 app.use('/movies', movieRouter);

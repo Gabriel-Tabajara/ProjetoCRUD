@@ -17,4 +17,14 @@ const get_movies = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         console.log('Erro no get_movies');
     }
 });
-export { get_movies };
+const post_movies = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const movie = new Movie(req.body);
+        yield movie.save();
+        res.status(201).send(movie);
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
+export { get_movies, post_movies };
