@@ -27,6 +27,4 @@ function connectDb() {
 connectDb();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-//app.use(express.urlencoded({ extended: true }));
-//app.set( "view engine", "ejs" );
 app.use('/movies', movieRouter);
